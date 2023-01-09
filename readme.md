@@ -5,6 +5,10 @@ Cipher program based on facade design pattern
 1. ROT13, ROT47 (SZYFR CEZARA) -> [https://pl.wikipedia.org/wiki/Szyfr_Cezara](https://pl.wikipedia.org/wiki/Szyfr_Cezara)
 ### FUNCTIONALITIES
 
+##### 2 FLOW
+- Decrypt: wczytujesz plik: podaj user nazwe -> pakujesz to do buffer -> I dajesz mozliwosc odszyfrowanie
+- Encrypt: user podaje slowo, zdanie ty szyfrujesz -> buffer -> zapis do pliku, exit: Coś znajduje się w bufferze?
+
 - FILEHANDLER (.json)
     - Odczyt i zapis do pliku
     - User podaje nazwe pliku
@@ -26,12 +30,20 @@ Cipher program based on facade design pattern
 
 ### Additional Things
 - Abstract/Factory method
-- IOReader -> io.print("Cześć", "to mój program", "1.Menu"), io.read("Please provide value") # *args
+  - IOReader -> io.print("Cześć", "to mój program", "1.Menu"), io.read("Please provide value") # *args
+  ''' class IO:
+    def print(*args):
+      for word in args:
+          print(word)
+    def read(text):
+      return input(text)
+  from xyz import IOReader as io
+
 
 ### Tools
 
-- Bandit, black, 
-- - precommita 
+- Bandit, black,
+- - precommita
 
 ### Styling
 
@@ -40,4 +52,4 @@ Cipher program based on facade design pattern
 - Often commits
 - Conventional commits -> [https://www.conventionalcommits.org/en/v1.0.0/](https://www.conventionalcommits.org/en/v1.0.0/) np. feat: xyz
 - type hints -> (mypy*)
-- docstring
+- Docstring
