@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3089e574-b81e-4cbe-ad96-db1bdb6dfe75" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/functionality/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/functionality/manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/functionality/operations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functionality/operations" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functionality/manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/functionality/manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functionality/operations.py" beforeDir="false" />
+    </list>
+    <list id="54bd8bb9-8156-4462-978e-170bb406789f" name="Changes by admin" comment="">
+      <change beforePath="$PROJECT_DIR$/functionality/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/functionality/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,15 +36,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "last_opened_file_path": "C:/Users/wojci/PycharmProjects/devs-base",
-    "settings.editor.selected.configurable": "inlay.hints"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/wojci/PycharmProjects/devs-base&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.main (1)">
     <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Cipher" />
@@ -133,8 +133,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main (1)" />
-        <item itemvalue="Python.operations" />
         <item itemvalue="Python.manager" />
+        <item itemvalue="Python.operations" />
       </list>
     </recent_temporary>
   </component>
