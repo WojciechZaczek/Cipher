@@ -4,7 +4,7 @@ import datetime
 class Buffer:
     """Class responsible for providing string that program will work on"""
 
-    def __init__(self, buffer: list) -> None:
+    def __init__(self, buffer) -> None:
         self.buffer = buffer
 
     def __str__(self):
@@ -20,5 +20,5 @@ class Buffer:
             "Time": now,
             "Mode": mode,
         }
-        self.buffer.append(new)
-        return self.buffer
+        return self.buffer.append(new)
+

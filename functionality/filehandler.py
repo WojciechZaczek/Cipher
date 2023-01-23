@@ -6,6 +6,7 @@ class Filehandler:
 
     @staticmethod
     def open_file():
+        """Opens json file"""
         try:
             x = input("Write a path:")
             with open(x) as json_file:
@@ -17,12 +18,14 @@ class Filehandler:
 
     @staticmethod
     def create_file():
+        """Creates json file"""
         data = {""}
         with open("sample.json", "a") as outfile:
             json.dump(data, outfile)
 
     @staticmethod
-    def write_line(text: list, path=None):
+    def write_line(text, path=None):
+        """Writes text in json file"""
         if path is None:
             path = "rot_data.json"
 

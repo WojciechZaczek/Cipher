@@ -1,6 +1,6 @@
 from functionality.buffer import Buffer
 from functionality.menu import Menu
-from functionality.rot import Rot, Rot47, RotFactory, Rot13
+from functionality.rot import RotFactory
 from functionality.filehandler import Filehandler
 
 
@@ -28,7 +28,6 @@ class Manager:
             self.__rot_use()
             print(self.rot_text)
             self.__save_text_in_buffer()
-
             break
 
     def __handle_instruction(self, user_input, menu):
@@ -45,7 +44,6 @@ class Manager:
     def __write_text(self):
         self.original_text = input("Write your text: ")
         return self.original_text
-        # {'text': 'djr', 'rot_type': 'rot13', 'status': 'encrypted'}
 
     def __upload_file(self):
         self.original_text = Filehandler.open_file()
@@ -63,7 +61,7 @@ class Manager:
                 self.rot_text = new.use_rot()
 
             case _:
-                print("Excuse me?")
+                Menu.print_question()
                 return self.__rot_use()
 
     def __save_text_in_buffer(self):
@@ -71,14 +69,53 @@ class Manager:
         match choice:
             case "Y" | "y" | "Yes":
                 self.buffer.write_buffer(self.original_text, self.rot_text)
-                print(self.buffer)
-                # self.save_buffer
-
+                print(f"Text saved in buffer. Your buffer is: {self.buffer}")
+                return self.__write_another_text()
             case "N" | "n" | "No":
                 return self.run()
             case _:
-                print("Excuse me?")
+                Menu.print_question()
                 return self.__save_text_in_buffer()
 
+    def __write_another_text(self):
+        choice = input("Would you like to write another one(Y/N)?: ")
+        match choice:
+            case "Y" | "y" | "Yes":
+                return self.run()
+
+            case "N" | "n" | "No":
+                return self.__save_buffer_in_file()
+
+            case _:
+                Menu.print_question()
+                return self.__write_another_text()
     def __save_buffer_in_file(self):
-        pass
+        choice = input("Would you like to save buffer in file (Y/N)?: ")
+        match choice:
+            case "Y" | "y" | "Yes":
+                create_or_upload = input("Would you like create a new file or upload (create/upload)?: ")
+                match create_or_upload:
+                    case "Create" | "create" | "c":
+                        name = input("Write file name: ")
+
+                        Filehandler.write_line(self.buffer.buffer, name+".json")
+                        print(f"Buffer saved in file {name}.json")
+                        return self.run()
+                    case "Upload" | "upload" | "u":
+
+                        path = input("Write a path: ")
+                        Filehandler.write_line(self.buffer.buffer, path)
+                        print(f"Buffer saved")
+                        return self.run()
+
+                    case _:
+                        Menu.print_question()
+                        self.__save_buffer_in_file()
+
+
+            case "N" | "n" | "No":
+                return self.run()
+
+            case _:
+                Menu.print_question()
+                return self.__save_buffer_in_file()
