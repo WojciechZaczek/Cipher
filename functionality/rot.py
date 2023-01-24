@@ -4,8 +4,8 @@ import string
 class RotFactory:
     """Abstract class - RotFactory"""
 
-    @classmethod
-    def get_rot(cls, shift: str, text: str):
+    @staticmethod
+    def get_rot(shift: str, text: str):
         if shift == "rot47":
             return Rot47(text)
         elif shift == "rot13":
