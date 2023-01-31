@@ -4,7 +4,7 @@
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [More detailed information about modules](#more-detailed-information-about-modules)
-* [Contact](#Contact)
+* [Contact](#contact)
 
 ## General info
 <details>
@@ -13,12 +13,12 @@
 </details>
 
 ## Technologies
-<ul>
+
 Project is created with:
  <li>Python 3.10</li>
  <li>Pytest 7.2.1</li>
  <li>Pre-commit 2.3.0</li>
-</ul>
+
 
 ## Setup
 
