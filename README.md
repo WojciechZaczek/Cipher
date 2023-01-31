@@ -1,55 +1,40 @@
-### CIPHER
+# Content of Project
 
-Cipher program based on facade design pattern
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [More detailed information about modules](#more-detailed-information-about-modules)
+* [Contact](#contact)
 
-1. ROT13, ROT47 (SZYFR CEZARA) -> [https://pl.wikipedia.org/wiki/Szyfr_Cezara](https://pl.wikipedia.org/wiki/Szyfr_Cezara)
-### FUNCTIONALITIES
+## General info
+<details>
+<summary>Click here to see general information about <b>Cipher</b>!</summary>
+<b>Cipher project</b>. This project was made as a part of Devs-Mentoring Python Developer course. The program allows the user to encrypt or decrypt text using the Rot13 or Rot47 cipher. The program can be extended with further ciphers. The encrypted/decrypted text can be saved as a .json file.
+</details>
 
-##### 2 FLOW
-- Decrypt: wczytujesz plik: podaj user nazwe -> pakujesz to do buffer -> I dajesz mozliwosc odszyfrowanie
-- Encrypt: user podaje slowo, zdanie ty szyfrujesz -> buffer -> zapis do pliku, exit: Coś znajduje się w bufferze?
+## Technologies
 
-- FILEHANDLER (.json)
-    - Odczyt i zapis do pliku
-    - User podaje nazwe pliku
-    - Wyjątki -> walidacja co podal user, walidacja czy plik istnieje((moduł os) Folder np. files)
-    - Gdy uzytkownik chce zapisac do tego samego pliku no to append -> Dopisanie do pliku (odpowiednie otwarcie)
-- Szyfrowanie i Odszyfrowywanie
-- Buffer (BUFOR) # -> Lista, która jest w pamięci []
-    - Add to buffer
-    - remove from buffer
-- MENU
-- Manager (multi inheritance < composition) # -> Klasa wykonujaca (start, end)
-- Exit
-- Unit Tests
-
-### Object Structure
-
-- Class Text
-    - {"cipher": "rot47", "text": "yquu", "status": "encrypted"}
-
-### Additional Things
-- Abstract/Factory method
-  - IOReader -> io.print("Cześć", "to mój program", "1.Menu"), io.read("Please provide value") # *args
-  ''' class IO:
-    def print(*args):
-      for word in args:
-          print(word)
-    def read(text):
-      return input(text)
-  from xyz import IOReader as io
+Project is created with:
+ <li>Python 3.10</li>
+ <li>Pytest 7.2.1</li>
+ <li>Pre-commit 2.3.0</li>
 
 
-### Tools
+## Setup
 
-- Bandit, black,
-- - precommita
+To start this project run main.py
 
-### Styling
+## More detailed information about modules
+This program was build based on OOP principles, inheritance, multicomposition and Abstract Factory creational design pattern. The project is divided into two folders: functionality and tests. Functionality folder contains modules responsible for the functioning of the program. Tests folder containts tests modules.
 
-- PEP 8
-- GITFLOW
-- Often commits
-- Conventional commits -> [https://www.conventionalcommits.org/en/v1.0.0/](https://www.conventionalcommits.org/en/v1.0.0/) np. feat: xyz
-- type hints -> (mypy*)
-- Docstring
+<br>The modules contained in the folder functionality are:<br>
+
+<b>buffer.py</b> - creates buffer where encrypt or decrypt text can be storage<br>
+<b>filehandler.py</b> - allows the user to save text in a .json file, upload or create a file<br>
+<b>main.py</b> - starts programm <br>
+<b>manager.py</b> - multicomposition of methods and objects<br>
+<b>menu.py</b> - messages appearing in the program menu<br>
+<b>rot.py</b> - encoding and decoding text using Rot13 and Rot47, creating a RotFactory <br>
+
+## Contact
+Wojciech Zaczek - wojciech.zaczek84@gmail.com
