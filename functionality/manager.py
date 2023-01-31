@@ -16,14 +16,15 @@ class Manager:
         self.__main_options = {
             1: self.__upload_file,
             2: self.__write_text,
-            3: self.__end_program,
+            3: self.__show_buffer,
+            4: self.__end_program,
         }
 
     def run(self) -> None:
         """Starts program"""
 
         while self.__is_running:
-            print(f"Your buffer: {self.buffer.buffer}")
+
             Menu.print_menu()
             user_instruction = int(input(""))
             self.__handle_instruction(user_instruction, self.__main_options)
@@ -48,6 +49,11 @@ class Manager:
         Menu.print_bye()
         self.__is_running = False
         exit()
+
+    def __show_buffer(self) -> None:
+        """Prints buffer"""
+        print(f"Your buffer: {self.buffer.buffer}")
+        self.run()
 
     def __write_text(self) -> None:
         """Allows user write text"""
