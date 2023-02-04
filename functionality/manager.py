@@ -10,21 +10,21 @@ class Manager:
 
     def __init__(self) -> None:
         self.__is_running = True
-        self.buffer = Buffer([])
+        self.buffer = Buffer()
         self.original_text = ""
         self.rot_text = ""
         self.__main_options = {
             1: self.__upload_file,
             2: self.__write_text,
-            3: self.__show_buffer,
-            4: self.__end_program,
+            3: self.__show_buffer,  # new
+            4: self.__delete_text_in_buffer,  # new
+            5: self.__end_program,
         }
 
     def run(self) -> None:
         """Starts program"""
 
         while self.__is_running:
-
             Menu.print_menu()
             user_instruction = int(input(""))
             self.__handle_instruction(user_instruction, self.__main_options)
@@ -52,8 +52,43 @@ class Manager:
 
     def __show_buffer(self) -> None:
         """Prints buffer"""
-        print(f"Your buffer: {self.buffer.buffer}")
+
+        self.buffer.print_buffer()
         self.run()
+
+    def __clear_buffer(self) -> None:  # new
+        """Deletes all text in buffer"""
+
+        self.buffer.clear_buffer()
+
+    def __delete_only_one_text_in_buffer(self) -> None:  # new
+        """Deletes one text in buffer"""
+
+        self.buffer.print_buffer()
+        no = int(input("Please write number of text you would like to delete: "))
+        while 1 > no > len(self.buffer.buffer):
+            Menu.print_question()
+            no = int(input("Please write number of text you would like to delete: "))
+        self.buffer.delete_one_text(no)
+        print("\nText has been deleted!")
+
+    def __delete_text_in_buffer(self) -> None:  # new
+        """Allows user to delete one text in buffer or clear buffer"""
+
+        choice = input(
+            "Do you want to delete all text messages or just one(all/one)?: "
+        )
+        while choice not in ["all", "one"]:
+            choice = input(
+                "Do you want to delete all text messages or just one(all/one)?: "
+            )
+        match choice:
+            case "all":
+                self.__clear_buffer()
+                self.__show_buffer()
+            case "one":
+                self.__delete_only_one_text_in_buffer()
+                self.__show_buffer()
 
     def __write_text(self) -> None:
         """Allows user write text"""
@@ -68,8 +103,8 @@ class Manager:
     def __rot_use(self) -> None:
         """Applies selected cipher to the text"""
 
-        shift = input("Which rot would you like to use (rot13 or rot47): ")
-        match shift:
+        self.shift = input("Which rot would you like to use (rot13 or rot47): ")
+        match self.shift:
             case "rot13" | "Rot13" | "rot 13" | "Rot 13" | "rot_13" | "Rot_13" | "13":
                 new = RotFactory.get_rot("rot13", self.original_text)
                 self.rot_text = new.use_rot()
@@ -88,8 +123,14 @@ class Manager:
         choice = input("Would you like to save text in buffer (Y/N): ")
         match choice:
             case "Y" | "y" | "Yes":
-                self.buffer.write_buffer(self.original_text, self.rot_text)
-                print(f"Text saved in buffer. Your buffer is: {self.buffer}")
+                mode = ""
+                while mode not in ["encrypt", "decrypt"]:
+                    mode = input("Write mode(encrypt/decrypt): ")
+                self.buffer.write_buffer(
+                    self.original_text, self.rot_text, mode=mode, rot=self.shift
+                )
+                print("Text saved in buffer")
+                self.buffer.print_buffer()
                 self.__write_another_text()
             case "N" | "n" | "No":
                 self.run()
@@ -100,7 +141,9 @@ class Manager:
     def __write_another_text(self) -> None:
         """Allows user to go to main menu and write another text"""
 
-        choice = input("Would you like to write another one(Y/N)?: ")
+        choice = input(
+            "Would you like to write another one and go back to main menu?(Y/N)?: "
+        )
         match choice:
             case "Y" | "y" | "Yes":
                 self.run()
