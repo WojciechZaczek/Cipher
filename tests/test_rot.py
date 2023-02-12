@@ -1,5 +1,6 @@
 import pytest
 
+
 from functionality.rot import Rot, Rot47, Rot13, RotFactory
 
 

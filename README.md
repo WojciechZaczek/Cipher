@@ -25,16 +25,9 @@ Project is created with:
 To start this project run main.py
 
 ## More detailed information about modules
-This program was build based on OOP principles, inheritance, multicomposition and Abstract Factory creational design pattern. The project is divided into two folders: functionality and tests. Functionality folder contains modules responsible for the functioning of the program. Tests folder containts tests modules.
+This program was build based on OOP principles, inheritance, multicomposition and  Factory Method creational design pattern. The project is divided into two folders: functionality and tests.
 
-<br>The modules contained in the folder functionality are:<br>
 
-<b>buffer.py</b> - creates buffer where encrypt or decrypt text can be storage<br>
-<b>filehandler.py</b> - allows the user to save text in a .json file, upload or create a file<br>
-<b>main.py</b> - starts programm <br>
-<b>manager.py</b> - multicomposition of methods and objects<br>
-<b>menu.py</b> - messages appearing in the program menu<br>
-<b>rot.py</b> - encoding and decoding text using Rot13 and Rot47, creating a RotFactory <br>
 
 ## Contact
 Wojciech Zaczek - wojciech.zaczek84@gmail.com

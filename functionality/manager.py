@@ -3,6 +3,7 @@ from functionality.buffer import Buffer
 from functionality.menu import Menu
 from functionality.rot import RotFactory
 from functionality.filehandler import Filehandler
+from utils import BufferUtils
 
 
 class Manager:
@@ -52,25 +53,8 @@ class Manager:
 
     def __show_buffer(self) -> None:
         """Prints buffer"""
-
-        self.buffer.print_buffer()
+        print(self.buffer)
         self.run()
-
-    def __clear_buffer(self) -> None:  # new
-        """Deletes all text in buffer"""
-
-        self.buffer.clear_buffer()
-
-    def __delete_only_one_text_in_buffer(self) -> None:  # new
-        """Deletes one text in buffer"""
-
-        self.buffer.print_buffer()
-        no = int(input("Please write number of text you would like to delete: "))
-        while 1 > no > len(self.buffer.buffer):
-            Menu.print_question()
-            no = int(input("Please write number of text you would like to delete: "))
-        self.buffer.delete_one_text(no)
-        print("\nText has been deleted!")
 
     def __delete_text_in_buffer(self) -> None:  # new
         """Allows user to delete one text in buffer or clear buffer"""
@@ -84,10 +68,10 @@ class Manager:
             )
         match choice:
             case "all":
-                self.__clear_buffer()
+                BufferUtils.clear_buffer(self.buffer)
                 self.__show_buffer()
             case "one":
-                self.__delete_only_one_text_in_buffer()
+                BufferUtils.delete_only_one_text_in_buffer(self.buffer)
                 self.__show_buffer()
 
     def __write_text(self) -> None:
@@ -118,7 +102,7 @@ class Manager:
                 self.__rot_use()
 
     def __save_text_in_buffer(self) -> None:
-        """Allows user to save text and modified teext in buffer. Text is saved as dict with date and selected mode"""
+        """Allows user to save text and modified text in buffer. Text is saved as dict with date and selected mode"""
 
         choice = input("Would you like to save text in buffer (Y/N): ")
         match choice:
@@ -126,11 +110,11 @@ class Manager:
                 mode = ""
                 while mode not in ["encrypt", "decrypt"]:
                     mode = input("Write mode(encrypt/decrypt): ")
-                self.buffer.write_buffer(
+                self.buffer.write(
                     self.original_text, self.rot_text, mode=mode, rot=self.shift
                 )
                 print("Text saved in buffer")
-                self.buffer.print_buffer()
+                print(self.buffer)
                 self.__write_another_text()
             case "N" | "n" | "No":
                 self.run()

@@ -3,16 +3,16 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Text:  # new - whole class
+class Text:
     """Dataclass - Buffer class object information"""
 
     org_text: str
     mdf_text: str
     rot: str
-    time: str
     mode: str
+    time: datetime = datetime.datetime.now()
 
-    def text_to_dct(self) -> dict:
+    def to_dct(self) -> dict[str, str | datetime.datetime]:
         """Creates dicts with Text class instances"""
         return {
             "Original text": self.org_text,
@@ -22,23 +22,33 @@ class Text:  # new - whole class
             "Time": self.time,
         }
 
+    def __str__(self):
+        return f"Text: {self.org_text}, Mode: {self.mode}, Used Rot: {self.rot}, Time {self.time}"
+
 
 class Buffer:
     """Object of this class stores data"""
 
     def __init__(self) -> None:
-        """Creates buffer"""
-
-        self.buffer = []
+        self.buffer: list[Text] = []
 
     def __str__(self) -> str:
         """Prints buffer"""
+        if not self.buffer:
+            return "\nBuffer is empty!"
+        if len(self.buffer) == 1:
+            body = f"\nYou buffer has {len(self.buffer)} text message:\n"
+        else:
+            body = f"\nYou buffer has {len(self.buffer)} text messages:\n"
 
-        return f"{self.buffer}"
+        arr = [(idx, str(text)) for idx, text in enumerate(self.buffer, start=1)]
+        for idx, text in arr:
+            body += f"{idx}. {text}\n"
+        return body
 
-    def write_buffer(
+    def write(
         self, original: str, modified: str, rot: str, mode: str
-    ) -> None:  # new - rot parametr and new is Text obj
+    ) -> None:  # new - rot parameter and new is Text obj
         """Appends dict with text to Buffer object"""
 
         text = Text(
@@ -46,31 +56,14 @@ class Buffer:
             mdf_text=modified,
             mode=mode,
             rot=rot,
-            time=f"{datetime.datetime.now()}",
         )
-        new = text.text_to_dct()
-        self.buffer.append(new)
-
-    def print_buffer(self) -> None:  # new way of print buffer
-        """Prints information about stored data"""
-
-        if not self.buffer:
-            print("\nBuffer is empty!")
-        else:
-            if len(self.buffer) == 1:
-                print(f"\nYou buffer has {len(self.buffer)} text message:")
-            else:
-                print(f"\nYou buffer has {len(self.buffer)} text messages:")
-            n = 0
-            for i in self.buffer:
-                n += 1
-                print(f"Text number {n}: {str(i)[1:-1]}")
+        self.buffer.append(text)
 
     def delete_one_text(self, no: int) -> None:  # new
         """Deletes one element in Buffer object"""
         del self.buffer[no - 1]
 
-    def clear_buffer(self) -> None:  # new
+    def clear(self) -> None:  # new
         """Deletes all elements in Buffer object"""
 
         self.buffer.clear()
