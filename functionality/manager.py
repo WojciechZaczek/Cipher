@@ -39,7 +39,7 @@ class Manager:
 
     def print_buffer(
         self,
-    ):  # zmieniłem z Buffer.peak_buffer bo wyglada wtedy ladniej -> Buffer__str__
+    ) -> None:  # zmieniłem z Buffer.peak_buffer bo wyglada wtedy ladniej -> Buffer__str__
         print(self.buffer)
         self.run()
 
