@@ -1,11 +1,3 @@
-import builtins
-from unittest.mock import patch, call
-import pytest
-import datetime
-from datetime import datetime, timezone
-
-import functionality.buffer
-
 from functionality.buffer import Buffer
 
 
@@ -18,7 +10,7 @@ class TestBuffer:
         mock_buffer_class = mocker.patch("functionality.buffer.Buffer")
         mock_write_buffer = mocker.patch("functionality.buffer.Buffer.write_buffer.new")
         mock_write_buffer.return_value = "test"
-        expected = ["test"]
+
         assert mock_buffer_class.write_buffer()
 
     def test_clear_buffer(self):

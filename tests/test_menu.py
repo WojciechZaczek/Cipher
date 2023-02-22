@@ -22,3 +22,9 @@ class TestMenu:
     def test_print_question(self, mocked_print):
         Menu.print_question()
         assert mocked_print.mock_calls == [call(Menu.question)]
+
+    @patch("builtins.print")
+    def test_print_selected_rot(self, mocked_print):
+        rot = "test"
+        Menu.print_selected_rot(rot)
+        assert mocked_print.mock_calls == [call(f"{Menu.rot} {rot}")]

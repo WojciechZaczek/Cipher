@@ -15,7 +15,7 @@ class RotFactory:
 class Rot:
     """Cipher constructor and methods"""
 
-    def __init__(self, text: str, key) -> None:
+    def __init__(self, text: str, key: int) -> None:
         self.text = text
         self.key = key
 
@@ -33,6 +33,9 @@ class Rot:
             else:
                 encrypt_text += l
         return encrypt_text
+
+    def __str__(self):
+        return self.__class__.__name__
 
 
 class Rot13(Rot):

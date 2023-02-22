@@ -76,4 +76,5 @@ class Buffer:
         self.__data.clear()
 
     def peak_buffer(self):
-        print(self.__data)
+        """Prints classes object using __str__ method"""
+        print(self)

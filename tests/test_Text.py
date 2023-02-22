@@ -1,6 +1,4 @@
 from functionality.buffer import Text
-import pytest
-from dataclasses import dataclass
 
 
 class TestText:

@@ -1,18 +1,25 @@
 from functionality.manager import Manager
-from unittest.mock import patch, call
-from functionality.buffer import Buffer
+from unittest.mock import patch
 
 
 class TestManager:
     def setup_method(self):
         self.manager = Manager()
 
-    def test_write_text_method(self):
-        mock_args = ["test", "ppp"]
-        with patch("builtins.input", side_effect=mock_args):
-            self.manager._Manager__write_text()
+    def test_set_shift(self):
+        mock_arg = ["rot13"]
 
-        assert self.manager.original_text == mock_args[0]
+        with patch("builtins.input", side_effect=mock_arg):
+            test = self.manager._Manager__set_shift()
+        assert test == mock_arg[0]
+
+    def test_selected_rot(self):
+        mock_arg = ["rot13"]
+
+        with patch("builtins.input", side_effect=mock_arg):
+            self.manager._Manager__set_rot()
+
+        assert self.manager.selected_rot == mock_arg[0]
 
     def test_get_valid_input_choice_in_prompt(self):  # new
         mock_arg = ["passed"]
@@ -36,7 +43,7 @@ class TestManager:
 
         assert test == f"{4} is not a instruction"
 
-    def test_delete_only_one_text(self):
+    def test_delete_only_one_text(self):  # new
         self.manager.buffer.get_data = ["A", "B", "C"]
         expected = ["A", "C"]
         mock_arg = ["2"]
